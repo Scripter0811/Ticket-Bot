@@ -1,8 +1,8 @@
-name: ticket-bot
+name: xenfire-support
 
 services:
   bot:
-    container_name: ticket-bot
+    container_name: xenfire-support
     build:
       context: .
       dockerfile: Dockerfile

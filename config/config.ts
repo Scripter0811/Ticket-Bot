@@ -16,10 +16,10 @@ This notice must not be removed, obscured, or replaced.
 import { defineConfig } from "@/config/index.js";
 
 export default defineConfig("0.0.1", {
-	// Your Xenfire Support Discord application ID (Developer Portal > General Information).
-	clientId: "123456789012345678",
-	// The Discord server ID where Xenfire Support is installed and commands should be deployed.
-	guildId: "123456789012345678",
+	// Your Discord application (bot) client ID.
+	clientId: "1555385243693752451",
+	// The guild where the bot is installed and where commands should be deployed.
+	guildId: "1550656855330787328",
 	// Supported locales: "en", "fr"
 	lang: "en",
 	// Transcript ID style used by ticket.pm uploads.
@@ -31,7 +31,7 @@ export default defineConfig("0.0.1", {
 	showWSLog: false,
 	logs: {
 		// Set to true to post audit logs for ticket actions.
-		enabled: true,
+		enabled: false,
 		// Channel where ticket audit logs will be sent.
 		channelId: "171717171717171717",
 		// Omit this object to enable every supported log type.
@@ -69,11 +69,11 @@ export default defineConfig("0.0.1", {
 		// How many open tickets a single user may have at once. Use 0 for unlimited.
 		maxOpenPerUser: 1,
 		// Global staff roles that can see and manage tickets.
-		staffRoleIds: ["111111111111111111"],
+		staffRoleIds: ["1555371469553270824"],
 		// Roles that are blocked from opening any ticket type by default.
-		blockedRoleIds: ["222222222222222222"],
+		blockedRoleIds: [],
 		// Roles mentioned in the welcome message when a ticket is opened.
-		mentionRoleIds: ["333333333333333333"],
+		mentionRoleIds: [],
 		// Fallback open-ticket template path inside the messages directory.
 		// Create your own file under messages/ and point a ticket type at it.
 		// Example file: messages/tickets/ticket-opened-billing.ts
@@ -105,12 +105,12 @@ export default defineConfig("0.0.1", {
 			nameWhenClaimed: "{ticketNumber}-claimed-{claimerUsername}",
 			// Optional category move applied after a successful claim.
 			// Leave blank to keep the ticket in its original category.
-			categoryWhenClaimed: "444444444444444444",
+			categoryWhenClaimed: "",
 			// disabled: nobody can take an existing claim
 			// staff: any configured staff member can take over
 			// roles: only roles listed in takeoverRoleIds can take over
 			takeoverMode: "roles",
-			takeoverRoleIds: ["555555555555555555"]
+			takeoverRoleIds: ["1555371469553270824"]
 		},
 		close: {
 			// If true, only staff can close tickets.
@@ -127,7 +127,7 @@ export default defineConfig("0.0.1", {
 			createTranscript: true,
 			// Optional category for closed tickets when the channel is not deleted.
 			// Leave blank to keep the ticket where it is.
-			closeTicketCategoryId: "666666666666666666",
+			closeTicketCategoryId: "",
 			// Global fallback template path for the DM sent on close.
 			// A ticket type can override this with ticketTypes.<key>.close.dmMessage.
 			dmMessage: "tickets/ticket-closed-dm",
@@ -142,8 +142,7 @@ export default defineConfig("0.0.1", {
 			name: "General Support",
 			description: "General help and account questions.",
 			// You can use a unicode emoji, a custom emoji string like <:name:id>, or just an emoji ID.
-			emoji: "<:ticket:171717171717171717>",
-			categoryId: "777777777777777777",
+			categoryId: "1555389079565242442",
 			// Optional per-type channel name override.
 			// Available parameters here:
 			// {ticketId} {ticketNumber} {ticketTypeKey} {ticketTypeName}
@@ -159,17 +158,12 @@ export default defineConfig("0.0.1", {
 			// {createdById} {createdByMention} {createdByUsername}
 			// {reason} {reason1} {reason2} ... {reasonN}
 			// {ticketId} {ticketNumber} {ticketTypeKey} {ticketTypeName} {userId} {username}
-			welcomeContent: "Tell us what you need help with and include screenshots if they matter.",
-			// Optional per-type block list.
-			blockedRoleIds: ["888888888888888888"],
-			// Optional per-type staff roles in addition to global staff roles.
-			staffRoleIds: ["999999999999999999"]
+			welcomeContent: "Tell us what you need help with and include screenshots if they matter."
 		},
 		billing: {
 			name: "Billing",
 			description: "Payments, invoices, and subscription issues.",
-			emoji: "<:billing:181818181818181818>",
-			categoryId: "101010101010101010",
+			categoryId: "1555389079565242442",
 			// This ticket type still uses the global open-ticket template.
 			// If you want a custom open layout, create another file in messages/
 			// and set `message` here the same way as the close overrides below.
@@ -186,7 +180,6 @@ export default defineConfig("0.0.1", {
 				dmMessage: "tickets/ticket-closed-dm-billing",
 				channelMessage: "tickets/ticket-closed-billing"
 			},
-			staffRoleIds: ["121212121212121212"],
 			openForm: {
 				title: "Billing Ticket",
 				questions: [
@@ -213,8 +206,7 @@ export default defineConfig("0.0.1", {
 		report: {
 			name: "Report",
 			description: "Report a player, member, or rule violation.",
-			emoji: "<:report:191919191919191919>",
-			categoryId: "131313131313131313",
+			categoryId: "1555389079565242442",
 			welcomeContent:
 				"Details: {reason1}\n\nAdditional info: {reason2}\n\nPlease provide any evidence you have and our staff will review it as soon as possible.",
 			openForm: {
@@ -244,59 +236,15 @@ export default defineConfig("0.0.1", {
 
 	panels: {
 		supportSelect: {
-			channelId: "141414141414141414",
+			channelId: "1553524812784336998",
 			// Each panel can use its own template file inside the messages directory.
 			// Example: create messages/tickets/open-panel-billing.ts and point this
 			// to "tickets/open-panel-billing" if you want a different panel layout.
 			message: "tickets/open-panel",
-			// Optional text posted alongside the panel template.
-			content: "Choose the ticket type that fits your issue best.",
 			opener: {
 				type: "inline-select",
 				ticketTypes: ["general", "billing", "report"],
 				placeholder: "Open a ticket"
-			}
-		},
-		supportButtonSelect: {
-			channelId: "151515151515151515",
-			message: "tickets/open-panel",
-			content: "Click the button, then choose the matching ticket type.",
-			opener: {
-				type: "button-select",
-				ticketTypes: ["general", "billing"],
-				label: "Open Support Ticket",
-				emoji: "<:open_ticket:202020202020202020>",
-				style: "primary",
-				placeholder: "Choose a ticket type",
-				disabled: false
-			}
-		},
-		quickButtons: {
-			channelId: "161616161616161616",
-			message: "tickets/open-panel",
-			content: "Fast one-click ticket buttons for the most common flows.",
-			opener: {
-				type: "buttons",
-				buttons: [
-					{
-						ticketType: "general",
-						label: "General Help",
-						emoji: "<:ticket:171717171717171717>",
-						style: "primary"
-					},
-					{
-						ticketType: "billing",
-						label: "Billing Help",
-						emoji: "<:billing:181818181818181818>",
-						style: "secondary"
-					},
-					{
-						ticketType: "report",
-						label: "Report User",
-						emoji: "<:report:191919191919191919>",
-						style: "danger"
-					}
-				]
 			}
 		}
 	}

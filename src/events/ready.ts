@@ -46,6 +46,8 @@ const ACTIVITY_TYPES = {
 	STREAMING: ActivityType.Streaming,
 	WATCHING: ActivityType.Watching
 } as const;
+const APPLICATION_DESCRIPTION =
+	"Xenfire Support helps with general support, billing questions, and reports through private tickets.\n\nPowered by Ticket-Bot: https://git.new/ticketbot";
 const PRESENCE_STATUSES = {
 	dnd: PresenceUpdateStatus.DoNotDisturb,
 	idle: PresenceUpdateStatus.Idle,
@@ -191,23 +193,12 @@ async function ensureApplicationAttribution(app: BotApp) {
 	try {
 		const application = await app.client.api.applications.getCurrent();
 		const currentDescription = application.description ?? "";
-
-		// PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
-		if (currentDescription.includes("*Powered by https://git.new/ticketbot*")) {
-			// PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
+		if (currentDescription === APPLICATION_DESCRIPTION) {
 			return;
 		}
 
-		const nextDescription = currentDescription.trimEnd()
-			? // PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
-				`${currentDescription.trimEnd()}\n\n*Powered by https://git.new/ticketbot*`
-			: // PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
-				"*Powered by https://git.new/ticketbot*";
-		// PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
-
-		// PLEASE RESPECT THE LICENSE: EITHER CREDIT THE PROJECT IN THE BOT'S DESCRIPTION OR STATUS OR EMBEDS, OR DON'T USE THE SOFTWARE AT ALL. THANK YOU.
 		await app.client.api.applications.editCurrent({
-			description: nextDescription
+			description: APPLICATION_DESCRIPTION
 		});
 	} catch (error) {
 		app.logger.warn("Failed to ensure Ticket-Bot attribution in the application description.", error);

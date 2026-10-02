@@ -22,7 +22,6 @@ const openPanelMessage = ({ LL }: MessageTemplateContext): LoadedMessageTemplate
 	components: [
 		{
 			type: ComponentType.Container,
-			accent_color: 16106539,
 			components: [
 				{
 					type: ComponentType.TextDisplay,

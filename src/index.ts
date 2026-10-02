@@ -22,14 +22,7 @@ const REPOSITORY_TAGS_URL = "https://api.github.com/repos/Sayrix/Ticket-Bot/tags
 const VERSION_PATTERN = /^v?(\d+)\.(\d+)\.(\d+)$/;
 const logger = createLogger("boot");
 
-console.log(`
-\x1b[38;2;143;110;250m████████╗██╗ ██████╗██╗  ██╗███████╗████████╗    ██████╗  ██████╗ ████████╗
-\x1b[38;2;157;101;254m╚══██╔══╝██║██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝    ██╔══██╗██╔═══██╗╚══██╔══╝
-\x1b[38;2;172;90;255m   ██║   ██║██║     █████╔╝ █████╗     ██║       ██████╔╝██║   ██║   ██║   
-\x1b[38;2;188;76;255m   ██║   ██║██║     ██╔═██╗ ██╔══╝     ██║       ██╔══██╗██║   ██║   ██║   
-\x1b[38;2;205;54;255m   ██║   ██║╚██████╗██║  ██╗███████╗   ██║       ██████╔╝╚██████╔╝   ██║   
-\x1b[38;2;222;0;255m   ╚═╝   ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═════╝  ╚═════╝    ╚═╝\x1b[0m
-`);
+console.log("\x1b[38;2;255;102;45mXENFIRE SUPPORT\x1b[0m");
 
 config({ path: "./config/.env", quiet: true });
 void checkForUpdates();
@@ -81,7 +74,7 @@ async function checkForUpdates() {
 			return;
 		}
 
-		logger.info(`Ticket-Bot is up to date (${BOT_VERSION}). Latest tag: ${latestTag.name}.`);
+		logger.info(`Xenfire Support is up to date (${BOT_VERSION}). Latest tag: ${latestTag.name}.`);
 	} catch (error) {
 		logger.warn("Failed to check for updates.", error);
 	}
